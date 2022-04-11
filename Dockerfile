@@ -1,8 +1,7 @@
-FROM lzzy12/mega-sdk-python:latest
+FROM ubuntu:20.04
 
 WORKDIR /usr/src/app
 RUN chmod 777 /usr/src/app
-
 RUN apt-get -qq update && \
     DEBIAN_FRONTEND="noninteractive" apt-get -qq install -y tzdata aria2 git python3 python3-pip \
     locales python3-lxml \
@@ -16,7 +15,8 @@ RUN apt-get -qq update && \
 
 COPY requirements.txt .
 COPY extract /usr/local/bin
-RUN chmod +x /usr/local/bin/extract
+COPY pextract /usr/local/bin
+RUN chmod +x /usr/local/bin/extract && chmod +x /usr/local/bin/pextract
 RUN pip3 install --no-cache-dir -r requirements.txt
 RUN locale-gen en_US.UTF-8
 ENV LANG en_US.UTF-8
