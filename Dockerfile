@@ -1,4 +1,4 @@
-FROM rootgamer/magneto:simple
+FROM rootgamer/magn3to:simple
 
 WORKDIR /usr/src/app
 RUN chmod 777 /usr/src/app
